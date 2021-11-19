@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Repository
-public class ItemDetailsRepository {
+public class ItemDetailRepository {
     private List<ItemDetail> items;
 
     @PostConstruct

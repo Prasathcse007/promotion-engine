@@ -9,18 +9,18 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+public class Default implements Discount {
 
-public class FixedDiscount implements Discount {
-
-    private Promotion promotion;
     private ItemDetailRepository itemDetailRepository;
-
-    public FixedDiscount(Promotion promotion) {
-        this.promotion = promotion;
-    }
 
     @Override
     public Integer applyDiscount(List<Product> products) {
-        return null;
+        return products.stream().mapToInt(product -> {
+            ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
+            if(itemDetail.getPrice() != null) {
+                return itemDetail.getPrice() * product.getCount();
+            }
+            return 0;
+        }).sum();
     }
 }

@@ -2,12 +2,14 @@ package com.ecom.repository;
 
 import com.ecom.entity.ItemDetail;
 import com.ecom.entity.Promotion;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Repository
 public class PromotionRepository {
     private List<Promotion> promotions;
 
