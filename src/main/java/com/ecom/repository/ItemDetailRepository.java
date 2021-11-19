@@ -31,6 +31,14 @@ public class ItemDetailRepository {
         }
         return null;
     }
+    public ItemDetail findByIds(String id){
+        Optional<ItemDetail> itemDetail = this.findAll().stream().filter(item -> item.getSkuId().equals(id))
+                .findFirst();
+        if(itemDetail.isPresent()){
+            return itemDetail.get();
+        }
+        return null;
+    }
 
     public ItemDetail add(ItemDetail itemDetail){
         items.add(itemDetail);

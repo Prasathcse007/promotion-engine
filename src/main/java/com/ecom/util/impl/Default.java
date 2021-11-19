@@ -13,14 +13,15 @@ public class Default implements Discount {
 
     private ItemDetailRepository itemDetailRepository;
 
+    public Default(ItemDetailRepository itemDetailRepository) {
+        this.itemDetailRepository = itemDetailRepository;
+    }
+
     @Override
     public Integer applyDiscount(List<Product> products) {
         return products.stream().mapToInt(product -> {
             ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
-            if(itemDetail.getPrice() != null) {
-                return itemDetail.getPrice() * product.getCount();
-            }
-            return 0;
+            return itemDetail.getPrice() * product.getCount();
         }).sum();
     }
 }
