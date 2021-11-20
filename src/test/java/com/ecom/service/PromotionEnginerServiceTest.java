@@ -29,18 +29,18 @@ public class PromotionEnginerServiceTest {
     private PromotionEngineServiceImpl promotionEngineService;
 
     @Mock
-    private ItemDetailRepository itemDetailRepository =  new ItemDetailRepository();
+    private ItemDetailRepository itemDetailRepository = new ItemDetailRepository();
     @Mock
     private PromotionRepository promotionRepository = new PromotionRepository();
 
     @Before
-    public void before(){
+    public void before() {
         List<Promotion> promotions = new ArrayList<>();
         promotions.add(Promotion.builder().skuId(Arrays.asList("A")).count(3).discountType("FIXED")
                 .discountRule("INDIVIDUAL").fixedPrice(130).build());
         promotions.add(Promotion.builder().skuId(Arrays.asList("B")).count(2).discountType("FIXED")
                 .discountRule("INDIVIDUAL").fixedPrice(45).build());
-        promotions.add(Promotion.builder().skuId(Arrays.asList("C","D")).count(1).discountType("FIXED")
+        promotions.add(Promotion.builder().skuId(Arrays.asList("C", "D")).count(1).discountType("FIXED")
                 .discountRule("COMBO").fixedPrice(30).build());
         Mockito.when(promotionRepository.findAll()).thenReturn(promotions);
         Mockito.when(itemDetailRepository.findById(Mockito.matches("A")))
@@ -51,11 +51,11 @@ public class PromotionEnginerServiceTest {
                 .thenReturn(ItemDetail.builder().skuId("C").price(20).build());
         Mockito.when(itemDetailRepository.findById(Mockito.matches("D")))
                 .thenReturn(ItemDetail.builder().skuId("D").price(15).build());
-        promotionEngineService =  new PromotionEngineServiceImpl(itemDetailRepository, promotionRepository);
+        promotionEngineService = new PromotionEngineServiceImpl(itemDetailRepository, promotionRepository);
     }
 
     @Test
-    public void itemListWithoutPromotion(){
+    public void itemListWithoutPromotion() {
         OrderRequest orderRequest = OrderRequest.builder().products(new ArrayList<>()).build();
         orderRequest.getProducts().add(Product.builder().skuId("A").count(1).build());
         orderRequest.getProducts().add(Product.builder().skuId("B").count(1).build());
@@ -65,7 +65,7 @@ public class PromotionEnginerServiceTest {
     }
 
     @Test
-    public void itemListWithIndividualPromotion(){
+    public void itemListWithIndividualPromotion() {
         OrderRequest orderRequest = OrderRequest.builder().products(new ArrayList<>()).build();
         orderRequest.getProducts().add(Product.builder().skuId("A").count(5).build());
         orderRequest.getProducts().add(Product.builder().skuId("B").count(5).build());
@@ -76,7 +76,7 @@ public class PromotionEnginerServiceTest {
     }
 
     @Test
-    public void itemListWithComboPromotion(){
+    public void itemListWithComboPromotion() {
         OrderRequest orderRequest = OrderRequest.builder().products(new ArrayList<>()).build();
         orderRequest.getProducts().add(Product.builder().skuId("A").count(5).build());
         orderRequest.getProducts().add(Product.builder().skuId("B").count(5).build());
@@ -86,7 +86,7 @@ public class PromotionEnginerServiceTest {
     }
 
     @After
-    public void after(){
+    public void after() {
 
     }
 }

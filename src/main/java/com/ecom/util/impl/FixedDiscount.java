@@ -24,7 +24,7 @@ public class FixedDiscount implements Discount {
     public Integer applyDiscount(List<Product> products) {
         List<Product> productList = products.stream().filter(product ->
                 promotion.getSkuId().contains(product.getSkuId())).collect(Collectors.toList());
-        if(promotion.getDiscountRule().equals("INDIVIDUAL")){
+        if (promotion.getDiscountRule().equals("INDIVIDUAL")) {
             products.removeAll(productList);
             return productList.stream().mapToInt(product -> {
                 ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
@@ -32,7 +32,7 @@ public class FixedDiscount implements Discount {
                         + ((product.getCount() % promotion.getCount()) * itemDetail.getPrice());
             }).sum();
         } else {
-            if(productList.size() == promotion.getSkuId().size()) {
+            if (productList.size() == promotion.getSkuId().size()) {
                 products.removeAll(productList);
                 int min = productList.stream().mapToInt(value -> value.getCount()).min().getAsInt();
                 return productList.stream().mapToInt(product -> {

@@ -3,8 +3,6 @@ package com.ecom.bo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor

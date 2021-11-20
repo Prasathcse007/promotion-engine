@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 @Service
 public class PromotionEngineServiceImpl implements PromotionEngineService {
@@ -42,10 +41,10 @@ public class PromotionEngineServiceImpl implements PromotionEngineService {
         return OrderResponse.builder().products(orderRequest.getProducts()).total(total.get()).build();
     }
 
-    private Discount getDiscout(Promotion promotion){
-        if(promotion != null && promotion.getDiscountType().equals("FIXED")) {
+    private Discount getDiscout(Promotion promotion) {
+        if (promotion != null && promotion.getDiscountType().equals("FIXED")) {
             return new FixedDiscount(promotion, itemDetailRepository);
-        } else if(promotion != null && promotion.getDiscountType().equals("PERCENTAGE")){
+        } else if (promotion != null && promotion.getDiscountType().equals("PERCENTAGE")) {
             return new PercentageDiscount(promotion, itemDetailRepository);
         } else {
             return new Default(itemDetailRepository);

@@ -23,7 +23,7 @@ public class PromotionEngineController {
     private PromotionEngineService promotionEngineService;
 
     @GetMapping(value = "/")
-    public String index(){
+    public String index() {
         return "Alive";
     }
 
@@ -32,7 +32,7 @@ public class PromotionEngineController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
-    public ResponseEntity<OrderResponse> order(@RequestBody OrderRequest orderRequest){
+    public ResponseEntity<OrderResponse> order(@RequestBody OrderRequest orderRequest) {
         return new ResponseEntity<>(promotionEngineService.order(orderRequest), HttpStatus.OK);
     }
 }

@@ -7,12 +7,13 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public class ItemDetailRepository {
     private List<ItemDetail> items;
 
     @PostConstruct
-    private void init(){
+    private void init() {
         items = new ArrayList<>();
         items.add(ItemDetail.builder().skuId("A").price(50).build());
         items.add(ItemDetail.builder().skuId("B").price(30).build());
@@ -20,19 +21,20 @@ public class ItemDetailRepository {
         items.add(ItemDetail.builder().skuId("D").price(15).build());
     }
 
-    public List<ItemDetail> findAll(){
+    public List<ItemDetail> findAll() {
         return items;
     }
-    public ItemDetail findById(String id){
+
+    public ItemDetail findById(String id) {
         Optional<ItemDetail> itemDetail = this.findAll().stream().filter(item -> item.getSkuId().equals(id))
                 .findFirst();
-        if(itemDetail.isPresent()){
+        if (itemDetail.isPresent()) {
             return itemDetail.get();
         }
         return null;
     }
 
-    public ItemDetail add(ItemDetail itemDetail){
+    public ItemDetail add(ItemDetail itemDetail) {
         items.add(itemDetail);
         return itemDetail;
     }
