@@ -1,8 +1,7 @@
 package com.ecom.service.impl;
 
-import com.ecom.bo.OrderRequest;
-import com.ecom.bo.OrderResponse;
-import com.ecom.bo.Product;
+import com.ecom.bo.*;
+import com.ecom.entity.ItemDetail;
 import com.ecom.entity.Promotion;
 import com.ecom.repository.ItemDetailRepository;
 import com.ecom.repository.PromotionRepository;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
@@ -39,6 +39,30 @@ public class PromotionEngineServiceImpl implements PromotionEngineService {
         Discount discount = getDiscout(null);
         total.set(total.get() + discount.applyDiscount(products));
         return OrderResponse.builder().products(orderRequest.getProducts()).total(total.get()).build();
+    }
+
+    @Override
+    public String addPromotion(PromotionRequest promotionRequest) {
+        Random rand = new Random();
+        if(promotionRequest != null){
+            promotionRepository.add(Promotion.builder().fixedPrice(promotionRequest.getFixedPrice())
+                    .discountRule(promotionRequest.getDiscountRule()).discountType(promotionRequest.getDiscountType())
+                    .count(promotionRequest.getCount()).skuId(promotionRequest.getSkuId())
+                    .percentage(promotionRequest.getPercentage()).id(String.valueOf(rand.nextInt())).build());
+            return "Success" ;
+        }
+        return "Failed";
+
+    }
+
+    @Override
+    public String addItem(ItemRequest itemRequest) {
+        if(itemRequest != null){
+            itemDetailRepository.add(ItemDetail.builder().skuId(itemRequest.getSkuId())
+                    .price(itemRequest.getPrice()).build());
+            return "Success" ;
+        }
+        return "Failed";
     }
 
     private Discount getDiscout(Promotion promotion) {

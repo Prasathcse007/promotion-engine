@@ -1,8 +1,10 @@
 package com.ecom.controller;
 
 
+import com.ecom.bo.ItemRequest;
 import com.ecom.bo.OrderRequest;
 import com.ecom.bo.OrderResponse;
+import com.ecom.bo.PromotionRequest;
 import com.ecom.service.PromotionEngineService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -34,5 +36,23 @@ public class PromotionEngineController {
     })
     public ResponseEntity<OrderResponse> order(@RequestBody OrderRequest orderRequest) {
         return new ResponseEntity<>(promotionEngineService.order(orderRequest), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/addPromotion")
+    @ApiOperation(value = "/addPromotion")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success")
+    })
+    public ResponseEntity<String> addPromotion(@RequestBody PromotionRequest promotionRequest) {
+        return new ResponseEntity<>(promotionEngineService.addPromotion(promotionRequest), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/addItem")
+    @ApiOperation(value = "/addItem")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success")
+    })
+    public ResponseEntity<String> addItem(@RequestBody ItemRequest itemRequest) {
+        return new ResponseEntity<>(promotionEngineService.addItem(itemRequest), HttpStatus.OK);
     }
 }
