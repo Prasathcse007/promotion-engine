@@ -2,10 +2,8 @@ package com.ecom.util;
 
 import com.ecom.bo.Product;
 import com.ecom.entity.ItemDetail;
-import com.ecom.entity.Promotion;
 import com.ecom.repository.ItemDetailRepository;
 import com.ecom.util.impl.Default;
-import com.ecom.util.impl.FixedDiscount;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +15,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)

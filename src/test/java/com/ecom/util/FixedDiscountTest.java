@@ -1,13 +1,9 @@
 package com.ecom.util;
 
-import com.ecom.bo.OrderRequest;
-import com.ecom.bo.OrderResponse;
 import com.ecom.bo.Product;
 import com.ecom.entity.ItemDetail;
 import com.ecom.entity.Promotion;
 import com.ecom.repository.ItemDetailRepository;
-import com.ecom.repository.PromotionRepository;
-import com.ecom.service.impl.PromotionEngineServiceImpl;
 import com.ecom.util.impl.FixedDiscount;
 import org.junit.After;
 import org.junit.Assert;

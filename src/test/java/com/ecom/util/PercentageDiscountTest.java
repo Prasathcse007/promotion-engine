@@ -4,8 +4,6 @@ import com.ecom.bo.Product;
 import com.ecom.entity.ItemDetail;
 import com.ecom.entity.Promotion;
 import com.ecom.repository.ItemDetailRepository;
-import com.ecom.repository.PromotionRepository;
-import com.ecom.util.impl.FixedDiscount;
 import com.ecom.util.impl.PercentageDiscount;
 import org.junit.After;
 import org.junit.Assert;

@@ -44,12 +44,12 @@ public class PromotionEngineServiceImpl implements PromotionEngineService {
     @Override
     public String addPromotion(PromotionRequest promotionRequest) {
         Random rand = new Random();
-        if(promotionRequest != null){
+        if (promotionRequest != null) {
             promotionRepository.add(Promotion.builder().fixedPrice(promotionRequest.getFixedPrice())
                     .discountRule(promotionRequest.getDiscountRule()).discountType(promotionRequest.getDiscountType())
                     .count(promotionRequest.getCount()).skuId(promotionRequest.getSkuId())
                     .percentage(promotionRequest.getPercentage()).id(String.valueOf(rand.nextInt())).build());
-            return "Success" ;
+            return "Success";
         }
         return "Failed";
 
@@ -57,10 +57,10 @@ public class PromotionEngineServiceImpl implements PromotionEngineService {
 
     @Override
     public String addItem(ItemRequest itemRequest) {
-        if(itemRequest != null){
+        if (itemRequest != null) {
             itemDetailRepository.add(ItemDetail.builder().skuId(itemRequest.getSkuId())
                     .price(itemRequest.getPrice()).build());
-            return "Success" ;
+            return "Success";
         }
         return "Failed";
     }
