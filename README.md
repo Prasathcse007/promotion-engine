@@ -13,3 +13,13 @@ exclusive; in other words if one is applied the other promotions will not apply.
 
 # Solution.
 
+Developed the use case as microservice api using spring web .
+
+Running the application:
+mvn spring-boot:run
+
+Running testcase
+mvn test
+
+API Details are in below swagger endpoint.
+http://localhost:8080/promotion-engine/swagger-ui/index.html
