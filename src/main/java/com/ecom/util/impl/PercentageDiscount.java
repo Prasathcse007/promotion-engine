@@ -3,6 +3,7 @@ package com.ecom.util.impl;
 import com.ecom.bo.Product;
 import com.ecom.entity.ItemDetail;
 import com.ecom.entity.Promotion;
+import com.ecom.enums.Constants;
 import com.ecom.repository.ItemDetailRepository;
 import com.ecom.util.Discount;
 
@@ -24,7 +25,7 @@ public class PercentageDiscount implements Discount {
     public Integer applyDiscount(List<Product> products) {
         List<Product> productList = products.stream().filter(product ->
                 promotion.getSkuId().contains(product.getSkuId())).collect(Collectors.toList());
-        if (promotion.getDiscountRule().equals("INDIVIDUAL")) {
+        if (promotion.getDiscountRule().equals(Constants.INDIVIDUAL.getValue())) {
             products.removeAll(productList);
             return productList.stream().mapToInt(product -> {
                 ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
