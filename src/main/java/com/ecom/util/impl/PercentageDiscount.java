@@ -28,8 +28,8 @@ public class PercentageDiscount implements Discount {
             products.removeAll(productList);
             return productList.stream().mapToInt(product -> {
                 ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
-                return (((product.getCount() / promotion.getCount()) * itemDetail.getPrice() * 100)
-                        / promotion.getPercentage()) + ((product.getCount() % promotion.getCount())
+                return (((product.getCount() / promotion.getCount()) * promotion.getCount() * itemDetail.getPrice()
+                        * promotion.getPercentage()) / 100) + ((product.getCount() % promotion.getCount())
                         * itemDetail.getPrice());
             }).sum();
         } else {
@@ -39,8 +39,8 @@ public class PercentageDiscount implements Discount {
                 return productList.stream().mapToInt(product -> {
                     ItemDetail itemDetail = itemDetailRepository.findById(product.getSkuId());
                     return (product.getCount() - min) * itemDetail.getPrice();
-                }).sum() + ((min * promotion.getFixedPrice() * 100)
-                        / promotion.getPercentage());
+                }).sum() + ((min * promotion.getFixedPrice() * promotion.getPercentage())
+                        / 100);
             }
             return 0;
         }
